@@ -59,3 +59,4 @@ IntelliNote. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 #include <sstream>
 #include <iomanip>
 #include <atlsync.h>
+#include <vector>
