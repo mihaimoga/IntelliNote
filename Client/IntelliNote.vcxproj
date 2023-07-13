@@ -117,6 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -169,6 +170,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -190,7 +192,7 @@
     <ClInclude Include="ChildFrame.h" />
     <ClInclude Include="CntrItem.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="HyperlinkStatic.h" />
+    <ClInclude Include="HLinkCtrl.h" />
     <ClInclude Include="IntelliNote.h" />
     <ClInclude Include="IntelliNoteDoc.h" />
     <ClInclude Include="IntelliNoteView.h" />
@@ -204,7 +206,7 @@
   <ItemGroup>
     <ClCompile Include="ChildFrame.cpp" />
     <ClCompile Include="CntrItem.cpp" />
-    <ClCompile Include="HyperlinkStatic.cpp" />
+    <ClCompile Include="HLinkCtrl.cpp" />
     <ClCompile Include="IntelliNote.cpp" />
     <ClCompile Include="IntelliNoteDoc.cpp" />
     <ClCompile Include="IntelliNoteView.cpp" />
