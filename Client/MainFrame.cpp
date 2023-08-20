@@ -42,6 +42,13 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
 	ON_UPDATE_COMMAND_UI(ID_UNDO, &CMainFrame::OnUpdateUndo)
 	ON_COMMAND(ID_REDO, &CMainFrame::OnRedo)
 	ON_UPDATE_COMMAND_UI(ID_REDO, &CMainFrame::OnUpdateRedo)
+	ON_COMMAND(IDC_TWITTER, &CMainFrame::OnTwitter)
+	ON_COMMAND(IDC_LINKEDIN, &CMainFrame::OnLinkedin)
+	ON_COMMAND(IDC_FACEBOOK, &CMainFrame::OnFacebook)
+	ON_COMMAND(IDC_INSTAGRAM, &CMainFrame::OnInstagram)
+	ON_COMMAND(IDC_ISSUES, &CMainFrame::OnIssues)
+	ON_COMMAND(IDC_DISCUSSIONS, &CMainFrame::OnDiscussions)
+	ON_COMMAND(IDC_WIKI, &CMainFrame::OnWiki)
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
@@ -357,4 +364,39 @@ void CMainFrame::OnUpdateRedo(CCmdUI *pCmdUI)
 
 	CRichEditCtrl& pCtrl = pView->GetRichEditCtrl();
 	pCmdUI->Enable(pCtrl.CanRedo());
+}
+
+void CMainFrame::OnTwitter()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://twitter.com/stefanmihaimoga"), nullptr, nullptr, SW_SHOW);
+}
+
+void CMainFrame::OnLinkedin()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://www.linkedin.com/in/stefanmihaimoga/"), nullptr, nullptr, SW_SHOW);
+}
+
+void CMainFrame::OnFacebook()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://www.facebook.com/stefanmihaimoga"), nullptr, nullptr, SW_SHOW);
+}
+
+void CMainFrame::OnInstagram()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://www.instagram.com/stefanmihaimoga/"), nullptr, nullptr, SW_SHOW);
+}
+
+void CMainFrame::OnIssues()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://github.com/mihaimoga/IntelliNote/issues"), nullptr, nullptr, SW_SHOW);
+}
+
+void CMainFrame::OnDiscussions()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://github.com/mihaimoga/IntelliNote/discussions"), nullptr, nullptr, SW_SHOW);
+}
+
+void CMainFrame::OnWiki()
+{
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://github.com/mihaimoga/IntelliNote/wiki"), nullptr, nullptr, SW_SHOW);
 }

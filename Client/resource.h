@@ -49,15 +49,21 @@
 #define ID_                             32771
 #define ID_DATE_TIME                    32771
 #define ID_UNDO                         32772
-#define ID_RREDO                        32773
 #define ID_REDO                         32773
+#define IDC_TWITTER                     32774
+#define IDC_LINKEDIN                    32775
+#define IDC_FACEBOOK                    32776
+#define IDC_INSTAGRAM                   32777
+#define IDC_ISSUES                      32778
+#define IDC_DISCUSSIONS                 32779
+#define IDC_WIKI                        32780
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        315
-#define _APS_NEXT_COMMAND_VALUE         32774
+#define _APS_NEXT_COMMAND_VALUE         32781
 #define _APS_NEXT_CONTROL_VALUE         1005
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

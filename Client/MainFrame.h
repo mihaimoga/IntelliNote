@@ -60,6 +60,14 @@ protected:
 	afx_msg void OnUpdateUndo(CCmdUI *pCmdUI);
 	afx_msg void OnRedo();
 	afx_msg void OnUpdateRedo(CCmdUI *pCmdUI);
+	afx_msg void OnTwitter();
+	afx_msg void OnLinkedin();
+	afx_msg void OnFacebook();
+	afx_msg void OnInstagram();
+	afx_msg void OnIssues();
+	afx_msg void OnDiscussions();
+	afx_msg void OnWiki();
+
 	DECLARE_MESSAGE_MAP()
 };
 
