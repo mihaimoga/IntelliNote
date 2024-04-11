@@ -1,4 +1,5 @@
-/* This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
+/* Copyright (C) 2022-2024 Stefan-Mihai MOGA
+This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
 
 IntelliNote is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Open
@@ -368,7 +369,7 @@ void CMainFrame::OnUpdateRedo(CCmdUI *pCmdUI)
 
 void CMainFrame::OnTwitter()
 {
-	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://twitter.com/stefanmihaimoga"), nullptr, nullptr, SW_SHOW);
+	::ShellExecute(GetSafeHwnd(), _T("open"), _T("https://x.com/stefanmihaimoga"), nullptr, nullptr, SW_SHOW);
 }
 
 void CMainFrame::OnLinkedin()

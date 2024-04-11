@@ -1,4 +1,5 @@
-/* This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
+/* Copyright (C) 2022-2024 Stefan-Mihai MOGA
+This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
 
 IntelliNote is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Open
@@ -61,4 +62,3 @@ protected:
 inline CIntelliNoteDoc* CIntelliNoteView::GetDocument() const
    { return reinterpret_cast<CIntelliNoteDoc*>(m_pDocument); }
 #endif
-

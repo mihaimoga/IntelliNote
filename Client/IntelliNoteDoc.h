@@ -1,4 +1,5 @@
-/* This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
+/* Copyright (C) 2022-2024 Stefan-Mihai MOGA
+This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
 
 IntelliNote is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Open
@@ -14,9 +15,7 @@ IntelliNote. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 // IntelliNoteDoc.h : interface of the CIntelliNoteDoc class
 //
 
-
 #pragma once
-
 
 class CIntelliNoteDoc : public CRichEditDoc
 {
