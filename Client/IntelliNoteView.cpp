@@ -113,6 +113,7 @@ void CIntelliNoteView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 
 void CIntelliNoteView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 {
+	UNREFERENCED_PARAMETER(point);
 #ifndef SHARED_HANDLERS
 	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
 #endif

@@ -60,6 +60,7 @@ END_COM_MAP()
 protected:
 	virtual HRESULT GetBitmap(UINT cx, HBITMAP *phbmp, WTS_ALPHATYPE *pdwAlpha)
 	{
+		UNREFERENCED_PARAMETER(cx);
 		if (m_pDocument == nullptr)
 		{
 			return E_NOTIMPL;
