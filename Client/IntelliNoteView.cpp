@@ -46,6 +46,11 @@ BEGIN_MESSAGE_MAP(CIntelliNoteView, CRichEditView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CIntelliNoteView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_COMMAND(ID_DATE_TIME, &CIntelliNoteView::OnDateTime)
+	ON_COMMAND(ID_UNDO, &CIntelliNoteView::OnUndo)
+	ON_UPDATE_COMMAND_UI(ID_UNDO, &CIntelliNoteView::OnUpdateUndo)
+	ON_COMMAND(ID_REDO, &CIntelliNoteView::OnRedo)
+	ON_UPDATE_COMMAND_UI(ID_REDO, &CIntelliNoteView::OnUpdateRedo)
 END_MESSAGE_MAP()
 
 // CIntelliNoteView construction/destruction
@@ -140,3 +145,105 @@ CIntelliNoteDoc* CIntelliNoteView::GetDocument() const // non-debug version is i
 #endif //_DEBUG
 
 // CIntelliNoteView message handlers
+
+void CIntelliNoteView::OnDateTime()
+{
+	SYSTEMTIME sysTime;
+	TCHAR lpszBuffer[0x100] = { 0, };
+	TCHAR lpszDayOfWeek[0x100] = { 0, };
+	TCHAR lpszMonth[0x100] = { 0, };
+	GetLocalTime(&sysTime);
+
+	switch (sysTime.wDayOfWeek)
+	{
+		case 0:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Sunday"));
+			break;
+		case 1:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Monday"));
+			break;
+		case 2:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Tuesday"));
+			break;
+		case 3:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Wednesday"));
+			break;
+		case 4:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Thursday"));
+			break;
+		case 5:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Friday"));
+			break;
+		case 6:
+			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Saturday"));
+			break;
+	}
+
+	switch (sysTime.wMonth)
+	{
+		case 1:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("January"));
+			break;
+		case 2:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("February"));
+			break;
+		case 3:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("March"));
+			break;
+		case 4:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("April"));
+			break;
+		case 5:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("May"));
+			break;
+		case 6:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("June"));
+			break;
+		case 7:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("July"));
+			break;
+		case 8:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("August"));
+			break;
+		case 9:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("September"));
+			break;
+		case 10:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("October"));
+			break;
+		case 11:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("November"));
+			break;
+		case 12:
+			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("December"));
+			break;
+	}
+
+	_stprintf_s(lpszBuffer, _countof(lpszBuffer), _T("%s, %s %d, %d %02d:%02d:%02d"), lpszDayOfWeek, lpszMonth, sysTime.wDay, sysTime.wYear, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+	CRichEditCtrl& pCtrl = GetRichEditCtrl();
+	pCtrl.ReplaceSel(CString(lpszBuffer));
+}
+
+void CIntelliNoteView::OnUndo()
+{
+	CRichEditCtrl& pCtrl = GetRichEditCtrl();
+	pCtrl.Undo();
+}
+
+void CIntelliNoteView::OnUpdateUndo(CCmdUI *pCmdUI)
+{
+	CRichEditCtrl& pCtrl = GetRichEditCtrl();
+	pCmdUI->Enable(pCtrl.CanUndo());
+}
+
+void CIntelliNoteView::OnRedo()
+{
+	CRichEditCtrl& pCtrl = GetRichEditCtrl();
+	pCtrl.Redo();
+}
+
+void CIntelliNoteView::OnUpdateRedo(CCmdUI *pCmdUI)
+{
+	CRichEditCtrl& pCtrl = GetRichEditCtrl();
+	pCmdUI->Enable(pCtrl.CanRedo());
+}

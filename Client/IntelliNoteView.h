@@ -56,6 +56,12 @@ protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnDateTime();
+	afx_msg void OnUndo();
+	afx_msg void OnUpdateUndo(CCmdUI *pCmdUI);
+	afx_msg void OnRedo();
+	afx_msg void OnUpdateRedo(CCmdUI *pCmdUI);
+
 	DECLARE_MESSAGE_MAP()
 };
 

@@ -57,11 +57,6 @@ protected:
 	afx_msg void OnViewCaptionBar();
 	afx_msg void OnUpdateViewCaptionBar(CCmdUI* pCmdUI);
 	afx_msg void OnOptions();
-	afx_msg void OnDateTime();
-	afx_msg void OnUndo();
-	afx_msg void OnUpdateUndo(CCmdUI *pCmdUI);
-	afx_msg void OnRedo();
-	afx_msg void OnUpdateRedo(CCmdUI *pCmdUI);
 	afx_msg void OnTwitter();
 	afx_msg void OnLinkedin();
 	afx_msg void OnFacebook();

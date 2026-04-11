@@ -39,11 +39,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
 	ON_COMMAND(ID_VIEW_CAPTION_BAR, &CMainFrame::OnViewCaptionBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_CAPTION_BAR, &CMainFrame::OnUpdateViewCaptionBar)
 	ON_COMMAND(ID_TOOLS_OPTIONS, &CMainFrame::OnOptions)
-	ON_COMMAND(ID_DATE_TIME, &CMainFrame::OnDateTime)
-	ON_COMMAND(ID_UNDO, &CMainFrame::OnUndo)
-	ON_UPDATE_COMMAND_UI(ID_UNDO, &CMainFrame::OnUpdateUndo)
-	ON_COMMAND(ID_REDO, &CMainFrame::OnRedo)
-	ON_UPDATE_COMMAND_UI(ID_REDO, &CMainFrame::OnUpdateRedo)
 	ON_COMMAND(IDC_TWITTER, &CMainFrame::OnTwitter)
 	ON_COMMAND(IDC_LINKEDIN, &CMainFrame::OnLinkedin)
 	ON_COMMAND(IDC_FACEBOOK, &CMainFrame::OnFacebook)
@@ -178,7 +173,6 @@ void CMainFrame::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-
 // CMainFrame message handlers
 
 void CMainFrame::OnWindowManager()
@@ -204,168 +198,6 @@ void CMainFrame::OnOptions()
 
 	pOptionsDlg->DoModal();
 	delete pOptionsDlg;
-}
-
-void CMainFrame::OnDateTime()
-{
-	CMDIFrameWnd *pFrame = (CMDIFrameWnd*)AfxGetApp()->GetMainWnd();
-
-	// Get the active MDI child window.
-	CMDIChildWnd *pChild = (CMDIChildWnd*)pFrame->GetActiveFrame();
-
-	// Get the active view attached to the active MDI child window.
-	CIntelliNoteView *pView = (CIntelliNoteView*)pChild->GetActiveView();
-
-	// Get the active document attached to the active MDI child window.
-	// CIntelliNoteDoc *pDoc = (CIntelliNoteDoc*)pView->GetDocument();
-
-	SYSTEMTIME sysTime;
-	TCHAR lpszBuffer[0x100] = { 0, };
-	TCHAR lpszDayOfWeek[0x100] = { 0, };
-	TCHAR lpszMonth[0x100] = { 0, };
-	GetLocalTime(&sysTime);
-
-	switch (sysTime.wDayOfWeek)
-	{
-		case 0:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Sunday"));
-			break;
-		case 1:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Monday"));
-			break;
-		case 2:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Tuesday"));
-			break;
-		case 3:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Wednesday"));
-			break;
-		case 4:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Thursday"));
-			break;
-		case 5:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Friday"));
-			break;
-		case 6:
-			_tcscpy_s(lpszDayOfWeek, _countof(lpszDayOfWeek), _T("Saturday"));
-			break;
-	}
-
-	switch (sysTime.wMonth)
-	{
-		case 1:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("January"));
-			break;
-		case 2:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("February"));
-			break;
-		case 3:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("March"));
-			break;
-		case 4:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("April"));
-			break;
-		case 5:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("May"));
-			break;
-		case 6:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("June"));
-			break;
-		case 7:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("July"));
-			break;
-		case 8:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("August"));
-			break;
-		case 9:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("September"));
-			break;
-		case 10:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("October"));
-			break;
-		case 11:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("November"));
-			break;
-		case 12:
-			_tcscpy_s(lpszMonth, _countof(lpszMonth), _T("December"));
-			break;
-	}
-
-	_stprintf_s(lpszBuffer, _countof(lpszBuffer), _T("%s, %s %d, %d %02d:%02d:%02d"), lpszDayOfWeek, lpszMonth, sysTime.wDay, sysTime.wYear, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
-	/*time_t ltime;
-	wchar_t buffer[0x100];
-	time(&ltime);
-	errno_t err = _wctime_s(buffer, 0x100, &ltime);
-	ASSERT(err == 0);*/
-	CRichEditCtrl& pCtrl = pView->GetRichEditCtrl();
-	pCtrl.ReplaceSel(CString(lpszBuffer));
-}
-
-void CMainFrame::OnUndo()
-{
-	CMDIFrameWnd *pFrame = (CMDIFrameWnd*)AfxGetApp()->GetMainWnd();
-
-	// Get the active MDI child window.
-	CMDIChildWnd *pChild = (CMDIChildWnd*)pFrame->GetActiveFrame();
-
-	// Get the active view attached to the active MDI child window.
-	CIntelliNoteView *pView = (CIntelliNoteView*)pChild->GetActiveView();
-
-	// Get the active document attached to the active MDI child window.
-	// CIntelliNoteDoc *pDoc = (CIntelliNoteDoc*)pView->GetDocument();
-
-	CRichEditCtrl& pCtrl = pView->GetRichEditCtrl();
-	pCtrl.Undo();
-}
-
-void CMainFrame::OnUpdateUndo(CCmdUI *pCmdUI)
-{
-	CMDIFrameWnd *pFrame = (CMDIFrameWnd*)AfxGetApp()->GetMainWnd();
-
-	// Get the active MDI child window.
-	CMDIChildWnd *pChild = (CMDIChildWnd*)pFrame->GetActiveFrame();
-
-	// Get the active view attached to the active MDI child window.
-	CIntelliNoteView *pView = (CIntelliNoteView*)pChild->GetActiveView();
-
-	// Get the active document attached to the active MDI child window.
-	// CIntelliNoteDoc *pDoc = (CIntelliNoteDoc*)pView->GetDocument();
-
-	CRichEditCtrl& pCtrl = pView->GetRichEditCtrl();
-	pCmdUI->Enable(pCtrl.CanUndo());
-}
-
-void CMainFrame::OnRedo()
-{
-	CMDIFrameWnd *pFrame = (CMDIFrameWnd*)AfxGetApp()->GetMainWnd();
-
-	// Get the active MDI child window.
-	CMDIChildWnd *pChild = (CMDIChildWnd*)pFrame->GetActiveFrame();
-
-	// Get the active view attached to the active MDI child window.
-	CIntelliNoteView *pView = (CIntelliNoteView*)pChild->GetActiveView();
-
-	// Get the active document attached to the active MDI child window.
-	// CIntelliNoteDoc *pDoc = (CIntelliNoteDoc*)pView->GetDocument();
-
-	CRichEditCtrl& pCtrl = pView->GetRichEditCtrl();
-	pCtrl.Redo();
-}
-
-void CMainFrame::OnUpdateRedo(CCmdUI *pCmdUI)
-{
-	CMDIFrameWnd *pFrame = (CMDIFrameWnd*)AfxGetApp()->GetMainWnd();
-
-	// Get the active MDI child window.
-	CMDIChildWnd *pChild = (CMDIChildWnd*)pFrame->GetActiveFrame();
-
-	// Get the active view attached to the active MDI child window.
-	CIntelliNoteView *pView = (CIntelliNoteView*)pChild->GetActiveView();
-
-	// Get the active document attached to the active MDI child window.
-	// CIntelliNoteDoc *pDoc = (CIntelliNoteDoc*)pView->GetDocument();
-
-	CRichEditCtrl& pCtrl = pView->GetRichEditCtrl();
-	pCmdUI->Enable(pCtrl.CanRedo());
 }
 
 void CMainFrame::OnTwitter()
