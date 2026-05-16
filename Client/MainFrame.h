@@ -1,4 +1,4 @@
-/* Copyright (C) 2022-2025 Stefan-Mihai MOGA
+/* Copyright (C) 2022-2026 Stefan-Mihai MOGA
 This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
 IntelliNote is an alternative Windows version to the famous Microsoft OneNote!
 

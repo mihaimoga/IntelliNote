@@ -1,4 +1,4 @@
-/* Copyright (C) 2022-2025 Stefan-Mihai MOGA
+/* Copyright (C) 2022-2026 Stefan-Mihai MOGA
 This file is part of IntelliNote application developed by Stefan-Mihai MOGA.
 IntelliNote is an alternative Windows version to the famous Microsoft OneNote!
 
@@ -12,17 +12,6 @@ or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 
 You should have received a copy of the GNU General Public License along with
 IntelliNote. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
-
-// This MFC Samples source code demonstrates using MFC Microsoft Office Fluent User Interface
-// (the "Fluent UI") and is provided only as referential material to supplement the
-// Microsoft Foundation Classes Reference and related electronic documentation
-// included with the MFC C++ library software.
-// License terms to copy, use or distribute the Fluent UI are available separately.
-// To learn more about our Fluent UI licensing program, please visit
-// https://go.microsoft.com/fwlink/?LinkId=238214.
-//
-// Copyright (C) Microsoft Corporation
-// All rights reserved.
 
 #pragma once
 
