@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.5.11801.241 oobstable
+VisualStudioVersion = 18.5.11801.241
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IntelliNote", "IntelliNote.vcxproj", "{8BCF13CD-DB3C-4AA0-BDC1-2A72F76F54B9}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IntelliNoteHandlers", "Inte
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genUp4win", "..\genUp4win\genUp4win.vcxproj", "{B404DF9B-63E6-4D23-8116-A0C28B9DA2A7}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{4D1AC582-8087-5490-FCC2-03CEC5D22547}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{B404DF9B-63E6-4D23-8116-A0C28B9DA2A7}.Release|x64.Build.0 = Release|x64
 		{B404DF9B-63E6-4D23-8116-A0C28B9DA2A7}.Release|x86.ActiveCfg = Release|Win32
 		{B404DF9B-63E6-4D23-8116-A0C28B9DA2A7}.Release|x86.Build.0 = Release|Win32
+		{4D1AC582-8087-5490-FCC2-03CEC5D22547}.Debug|x64.ActiveCfg = Debug
+		{4D1AC582-8087-5490-FCC2-03CEC5D22547}.Debug|x86.ActiveCfg = Debug
+		{4D1AC582-8087-5490-FCC2-03CEC5D22547}.Release|x64.ActiveCfg = Release
+		{4D1AC582-8087-5490-FCC2-03CEC5D22547}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
