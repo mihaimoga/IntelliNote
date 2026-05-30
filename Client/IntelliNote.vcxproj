@@ -247,6 +247,7 @@
     <Image Include="res\filesmall.png" />
     <Image Include="res\info.bmp" />
     <Image Include="res\IntelliNote.ico" />
+    <Image Include="res\IntelliNote.png" />
     <Image Include="res\IntelliNoteDoc.ico" />
     <Image Include="res\main.bmp" />
     <Image Include="res\Toolbar.bmp" />

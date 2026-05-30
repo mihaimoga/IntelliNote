@@ -150,5 +150,8 @@
     <Image Include="res\writesmall.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\IntelliNote.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
