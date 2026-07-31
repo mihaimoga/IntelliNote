@@ -35,6 +35,7 @@ public:
 
 public:
 	CInstanceChecker m_pInstanceChecker;
+	CStringArray m_arrSessionFiles;
 
 // Overrides
 public:

@@ -172,6 +172,19 @@ BOOL CIntelliNoteApp::InitInstance()
 	// app was launched with /RegServer, /Register, /Unregserver or /Unregister.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
+
+
+	// Restore previously open documents when no file was specified on the command line
+	if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew)
+	{
+		for (INT_PTR i = 0; i < m_arrSessionFiles.GetCount(); ++i)
+		{
+			if (std::filesystem::exists(m_arrSessionFiles[i].GetString()))
+				OpenDocumentFile(m_arrSessionFiles[i]);
+		}
+		m_arrSessionFiles.RemoveAll();
+	}
+
 	// The main window has been initialized, so show and update it
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
@@ -333,10 +346,45 @@ void CIntelliNoteApp::PreLoadState()
 
 void CIntelliNoteApp::LoadCustomState()
 {
+	m_arrSessionFiles.RemoveAll();
+	const int nCount = GetProfileInt(_T("Session"), _T("Count"), 0);
+	for (int i = 0; i < nCount; ++i)
+	{
+		CString strKey;
+		strKey.Format(_T("File%d"), i);
+		const CString strPath = GetProfileString(_T("Session"), strKey);
+		if (!strPath.IsEmpty())
+			m_arrSessionFiles.Add(strPath);
+	}
 }
 
 void CIntelliNoteApp::SaveCustomState()
 {
+	// Collect paths of all open documents
+	CStringArray arrFiles;
+	POSITION posTemplate = GetFirstDocTemplatePosition();
+	while (posTemplate != nullptr)
+	{
+		CDocTemplate* pTemplate = GetNextDocTemplate(posTemplate);
+		POSITION posDoc = pTemplate->GetFirstDocPosition();
+		while (posDoc != nullptr)
+		{
+			CDocument* pDoc = pTemplate->GetNextDoc(posDoc);
+			const CString strPath = pDoc->GetPathName();
+			if (!strPath.IsEmpty())
+				arrFiles.Add(strPath);
+		}
+	}
+
+	// Write session to registry
+	const int nCount = static_cast<int>(arrFiles.GetCount());
+	WriteProfileInt(_T("Session"), _T("Count"), nCount);
+	for (int i = 0; i < nCount; ++i)
+	{
+		CString strKey;
+		strKey.Format(_T("File%d"), i);
+		WriteProfileString(_T("Session"), strKey, arrFiles[i]);
+	}
 }
 
 // CIntelliNoteApp message handlers
