@@ -13,3 +13,6 @@ HKEY_CLASSES_ROOT\IntelliNote.Document\shell\open\ddeexec\application = IntelliN
 
 HKEY_CLASSES_ROOT\IntelliNote.Document = IntelliNote.Document
 
+HKEY_CLASSES_ROOT\SystemFileAssociations\.rtf\shell\IntelliNote = Open with IntelliNote
+HKEY_CLASSES_ROOT\SystemFileAssociations\.rtf\shell\IntelliNote\command = IntelliNote.EXE "%1"
+

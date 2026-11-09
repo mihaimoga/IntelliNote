@@ -61,6 +61,17 @@ bool RegisterRtfFileType()
 		return false;
 	key.Close();
 
+	// "Open with IntelliNote" contextual shell menu for RTF files
+	if (key.Create(HKEY_CURRENT_USER, _T("Software\\Classes\\SystemFileAssociations\\.rtf\\shell\\IntelliNote")) != ERROR_SUCCESS ||
+		key.SetStringValue(nullptr, _T("Open with IntelliNote")) != ERROR_SUCCESS ||
+		key.SetStringValue(_T("Icon"), strModulePath) != ERROR_SUCCESS)
+		return false;
+	key.Close();
+	if (key.Create(HKEY_CURRENT_USER, _T("Software\\Classes\\SystemFileAssociations\\.rtf\\shell\\IntelliNote\\command")) != ERROR_SUCCESS ||
+		key.SetStringValue(nullptr, strCommand) != ERROR_SUCCESS)
+		return false;
+	key.Close();
+
 	TCHAR szAssociation[256];
 	DWORD dwSize = sizeof(szAssociation);
 	const LSTATUS associationStatus = RegGetValue(HKEY_CLASSES_ROOT, _T(".rtf"), nullptr,
@@ -158,7 +169,7 @@ BOOL CIntelliNoteApp::InitInstance()
 	// AfxInitRichEdit2() is required to use RichEdit control
 	AfxInitRichEdit2();
 
-	//Check for the previous instance as soon as possible
+	// Check for the previous instance as soon as possible
 	if (m_pInstanceChecker.PreviousInstanceRunning())
 	{
 		CCommandLineInfo cmdInfo;
@@ -222,7 +233,11 @@ BOOL CIntelliNoteApp::InitInstance()
 
 	// Enable DDE Execute open
 	EnableShellOpen();
-	if (!GetProfileInt(_T("FileAssociations"), _T("RtfRegistered"), 0) && RegisterRtfFileType())
+	const bool bRtfRegistered = GetProfileInt(_T("FileAssociations"), _T("RtfRegistered"), 0) != 0;
+	ATL::CRegKey shellKey;
+	const bool bShellMenuRegistered = (shellKey.Open(HKEY_CURRENT_USER,
+		_T("Software\\Classes\\SystemFileAssociations\\.rtf\\shell\\IntelliNote"), KEY_READ) == ERROR_SUCCESS);
+	if ((!bRtfRegistered || !bShellMenuRegistered) && RegisterRtfFileType())
 		WriteProfileInt(_T("FileAssociations"), _T("RtfRegistered"), 1);
 
 	// Dispatch commands specified on the command line.  Will return FALSE if
