@@ -48,6 +48,47 @@ These instructions will allow you to run a portable or mini-portable (also calle
 
 The portable zip edition of _IntelliNote_ can be removed by deleting the directory they came in. If you manually set up file associations or context-menu entries in the OS, it is your responsibility to remove them yourself.
 
+## Roadmap
+
+This roadmap outlines where _IntelliNote_ is heading. It brings together the next steps for the features that are already there, ideas for new ones, and the maintenance work that goes into every release. Items are grouped by horizon rather than by date, and their order may change as feedback arrives or as the libraries _IntelliNote_ builds on evolve, so please treat it as a statement of intent, not a promise. For everything that has already shipped, see the [Release Notes](https://github.com/mihaimoga/IntelliNote/blob/main/ReleaseNotes.html).
+
+_Last reviewed: November 2026 (version 0.01 in development)._
+
+### Now (in progress and ongoing)
+
+- **Version 0.01**: the first pre-release, with a tabbed editor for RTF notes, printing and print preview, embedded OLE objects, the `.rtf` file association (including an _Open with IntelliNote_ command in Windows Explorer) and the reopening of the saved notes that were open at the last close. It is meant for evaluation and early feedback, so it is not production-ready yet.
+- **Up-to-date components**: each release picks up the latest genUp4win, PJ Naughter's CHLinkCtrl, CInstanceChecker and CVersionInfo.
+- **Stability, security and performance**: bug fixes, security updates and performance tuning continue alongside new features, so that _IntelliNote_ stays fast and small.
+
+### Next (planned, next in line)
+
+- **Text formatting**: font, size, bold, italic, underline, strikethrough, text and highlight colors, alignment, lists and indentation on the ribbon. Notes are saved as RTF, which can carry all of this, but the ribbon has no formatting commands yet.
+- **Check for updates**: a command that looks for a newer version through genUp4win. The library is part of the solution and of the installer, but nothing in the application calls it yet.
+- **A useful status bar and zoom**: show the line and column, the word count and the zoom level, and add zoom commands to the View panel. The status bar still shows two placeholder panes today, and the caption bar shows the sample text of the project template.
+- **Options dialog**: one place for the settings that cannot be changed today, such as reopening the previous notes at startup and registering or removing the `.rtf` association and the _Open with IntelliNote_ command. The Options button of the caption bar only customizes the ribbon.
+
+### Later (planned, larger efforts)
+
+- **Notebooks, sections and pages**: organize notes the way OneNote does, with a navigation pane next to the note. Today every note is a separate RTF file in its own tab.
+- **Pictures, links and tables**: dedicated commands to insert pictures from files, hyperlinks and tables. The Insert panel only offers OLE objects and the date and time today.
+- **Search across notes**: search, and optionally replace, across all the notes of a folder, with the matches listed in a results panel. Find and Replace work on the current note only today.
+- **Windows Explorer integration**: finish the preview, thumbnail and search handlers so that notes can be previewed, shown as thumbnails and found by Windows Search. The IntelliNoteHandlers project is part of the solution, but its thumbnail drawing and search-content code is still the project template.
+- **Fuller session restore**: reopen each note at its last caret and scroll position and, later, bring back unsaved and untitled notes. Today the session only remembers the file names of the notes that were saved to a file.
+
+### Under consideration (ideas, not yet committed)
+
+- **Spell checking**: underline misspelled words while typing, using the spell-checking support built into Windows.
+- **Tags and to-do lists**: tag paragraphs and add check boxes, as in OneNote.
+- **Synchronization between PCs**: keep notes up to date across several computers. _IntelliNote_ works on local files only today, and the repository has no server component.
+- **Themes and dark mode**: choose a color theme for the ribbon and the editing area, including a dark one. There is no theme setting today.
+- **Localized user interface**: translated menus, commands and messages (the interface is English only today, and the Date & Time command always writes English day and month names).
+- **Native ARM64 and high-DPI support**: a native ARM64 build for Windows on Arm devices (_IntelliNote_ is currently built for x86 and x64) and Per-Monitor V2 DPI awareness for a sharper interface on high-DPI and mixed-DPI displays.
+- **Automated builds**: a GitHub Actions workflow that builds the Win32 and x64 configurations for every pull request, so that contributions get quick feedback.
+
+### Help shape the roadmap
+
+Want to see something sooner, or have an idea that is not listed here? [Open an issue](https://github.com/mihaimoga/IntelliNote/issues) or start a conversation in [Discussions](https://github.com/mihaimoga/IntelliNote/discussions). Contributions are welcome as well: any item above can be picked up through a pull request, as described in the next section. For enhancements, the issue must be approved by a project administrator (it will carry the `Accepted` label) before the pull request can be merged, so it is best to open the issue before you start coding.
+
 ## Create and Submit your Pull Request
 
 As noted in the [Contributing Rules](https://github.com/mihaimoga/IntelliNote/blob/main/CONTRIBUTING.md) for _IntelliNote_, all Pull Requests need to be attached to a issue on GitHub. So the first step is to create an issue which requests that the functionality be improved (if it was already there) or added (if it was not yet there); in your issue, be sure to explain that you have the functionality definition ready, and will be submitting a Pull Request. The second step is to use the GitHub interface to create the Pull Request from your fork into the main repository. The final step is to wait for and respond to feedback from the developers as needed, until such time as your PR is accepted or rejected.
